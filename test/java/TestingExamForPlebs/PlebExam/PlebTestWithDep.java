@@ -5,6 +5,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Random;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,11 +32,11 @@ class PlebTestWithDep {
 		inter = new PlebMainWithDependencies();
 		Random ran = new Random();
 		int size = inter.bakeACookie();
-		int bites = ran.nextInt();
+		int bites = ran.nextInt(100)+1;
 		while(size <= bites){
-			bites = ran.nextInt();
+			bites = ran.nextInt(100)+1;
 		}		
-		assertThat(size - inter.getChipsLeft(size, bites), is(equalTo(inter.getBitesTaken(size, inter.getChipsLeft(size, bites)))));
+		assertThat(size - inter.chipsLeft(size, bites), is(equalTo(inter.getBitesTaken(size, inter.chipsLeft(size, bites)))));
 	}
 
 }
