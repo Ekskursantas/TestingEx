@@ -25,4 +25,16 @@ class PlebTestWithDep {
 		assertThat(size - inter.getSipsTaken(size, 99), is(equalTo(inter.getSipsLeft(size, inter.getSipsTaken(size, 99)))));
 	}
 
+	@Test
+	void getBitesTakenHamCrest() {
+		inter = new PlebMainWithDependencies();
+		Random ran = new Random();
+		int size = inter.bakeACookie();
+		int bites = ran.nextInt();
+		while(size <= bites){
+			bites = ran.nextInt();
+		}		
+		assertThat(size - inter.getChipsLeft(size, bites), is(equalTo(inter.getBitesTaken(size, inter.getChipsLeft(size, bites)))));
+	}
+
 }
