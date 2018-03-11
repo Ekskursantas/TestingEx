@@ -38,5 +38,24 @@ class PlebTestWithDep {
 		}		
 		assertThat(size - inter.chipsLeft(size, bites), is(equalTo(inter.getBitesTaken(size, inter.chipsLeft(size, bites)))));
 	}
+	@Test
+	void getSipsLeftDataDriven() {
+		int[] cupSize = new int[] {-1, 5, 100}
+		int[] sipsTaken = new int[] {-1, 0, 1}
+		int[] expected1 = new int[] {null, 0, 99}
+
+				
+		DataDriven(cupSize, sipsTaken, expected1)
+		
+	}
+
+
+	@Test
+	void DataDriven(int[] size, int[] sipsTaken, int[] expected) {
+		inter = new PlebMainWithDependencie();
+		int[] actual = inter.getSipsLeft(size, sipsTaken)
+		assertArrayEquals(expected, actual);
+
+	}
 
 }
